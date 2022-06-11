@@ -1,4 +1,4 @@
-trigger OpportunityTrigger on Opportunity (before insert, before update) {
+trigger OpportunityTrigger on Opportunity (before insert, before update, after insert) {
 
 
     switch on Trigger.operationType {
@@ -8,10 +8,20 @@ trigger OpportunityTrigger on Opportunity (before insert, before update) {
         }
 
         when AFTER_INSERT {
-            
+
+            OpportunityTH.afterInsertHandler(Trigger.new);
+
         }
-        
+
         when BEFORE_UPDATE {
+
+
+
+        }
+
+        when AFTER_UPDATE {
+
+            OpportunityTH.afterUpdateHandler(Trigger.new);
 
         }
     }
