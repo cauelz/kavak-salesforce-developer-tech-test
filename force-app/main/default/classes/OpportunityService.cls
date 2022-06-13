@@ -12,6 +12,8 @@ public class OpportunityService {
 
             newOpportunity.OwnerId = opportunity.OwnerId;
             newOpportunity.StageName = 'Needs Analysis';
+            newOpportunity.Name = opportunity.Name;
+            newOpportunity.CloseDate = System.today().addDays(14);
 
             newOpportunities.add(newOpportunity);
 
@@ -49,6 +51,7 @@ public class OpportunityService {
 
         mail.setTargetObjectIds(ids);
         mail.setTemplateId(template.id);
+        mail.setSaveAsActivity(false);
 
         Messaging.sendEmail(new Messaging.MassEmailMessage[] { mail });
 

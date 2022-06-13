@@ -1,4 +1,4 @@
-trigger OpportunityTrigger on Opportunity (before insert, before update, after insert) {
+trigger OpportunityTrigger on Opportunity (before insert, before update, after insert, after update) {
 
 
     switch on Trigger.operationType {
@@ -20,8 +20,8 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
         }
 
         when AFTER_UPDATE {
-
-            OpportunityTH.afterUpdateHandler(Trigger.new);
+            
+            OpportunityTH.afterUpdateHandler(Trigger.new, Trigger.oldMap);
 
         }
     }
